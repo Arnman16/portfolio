@@ -162,9 +162,7 @@ const wavePointHover = require("../assets/wavePointHover.png");
 import "vue-keyframes";
 export default {
   name: "Navbar",
-  components: {
-    // Keyframes,
-  },
+
   watch: {
     $route: "setIntro",
   },
@@ -188,7 +186,6 @@ export default {
     return {
       lastRoute: "",
       intro: true,
-      routeFrames: new Array(this.$route.name.length),
       hamburgerHover: hamburgerHover,
       waterPoint: waterPoint,
       waterPointHover: waterPointHover,
@@ -254,16 +251,19 @@ export default {
       this.routeFrames = routeFrames;
       console.log(routeFrames);
     },
+    mounted() {
+      this.routeName = this.$route.name;
+    },
     created() {
       // this.$refs.myKeyframes.stop = false;
-      this.routeFrames = new Array(this.$route.name.length);
-      this.getFrames();
+      // this.routeFrames = new Array(this.$route.name.length);
+      // this.getFrames();
     },
   },
 };
 </script>
 
-<style scoped>
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 .my-title {
   font-family: "Source Code Pro", monospace;

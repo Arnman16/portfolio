@@ -16,7 +16,7 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-fab-transition>
-    <v-container>
+    <v-container fluid :class="isMobile ? 'ma-0 pa-0' : 'ma-2'">
       <div v-if="!posts.length" class="text--primary">
         <v-row justify="space-around" align="center">
           <v-col align="center">

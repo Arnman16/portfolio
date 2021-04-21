@@ -52,8 +52,8 @@
           :key="index"
         >
           <div v-if="section.type == 'text'">
-            <v-card-text class="content-text" v-html="section.content">
-            </v-card-text>
+            <span class="content-text" v-html="section.content">
+            </span>
           </div>
           <div v-else>
             <snippet :code="section.content" :lang="section.lang" />
@@ -167,7 +167,7 @@ export default {
 }
 
 .post-container {
-  max-width: 700px;
+  max-width: 800px;
   padding: 0;
 }
 </style>

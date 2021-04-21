@@ -41,9 +41,9 @@
     </v-navigation-drawer>
     <v-main>
       <transition name="page" mode="out-in">
-        <div class="mainContainer">
+        <v-container fluid :class="isMobile ? 'ma-0 pa-0' : 'mainContainer'">
           <router-view></router-view>
-        </div>
+        </v-container>
       </transition>
     </v-main>
     <v-footer height="58" outlined padless color="rgba(0,0,0,0.01)">
@@ -273,7 +273,8 @@ html {
   height: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  max-width: 70%;
 }
 .bg {
   background-image: linear-gradient(#120a2334, #120a23);

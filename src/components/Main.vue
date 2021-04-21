@@ -1,72 +1,71 @@
 <template>
-  <div @click="drawer = false">
-    <v-container>
-      <v-card
-        color="rgba(0,0,0,0.01)"
-        outlined
-        :style="'border: 1px solid #f8f8ff1a;'"
-        class="mx-auto ma-3"
-      >
-        <div v-if="$store.state.noise" class="noise"></div>
-        <v-card-text>
-          <div class="main-text">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum."
-          </div>
-        </v-card-text>
-      </v-card>
-      <v-card
-        color="rgba(0,0,0,0.01)"
-        outlined
-        :style="'border: 1px solid #f8f8ff1a;'"
-        class="mx-auto ma-3"
-      >
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">headline</h3>
-            <div>description</div>
-          </div>
-        </v-card-title>
-        <v-card-actions>
-          <v-btn to="/test" text>TEST</v-btn>
-          <v-btn to="/about" text>ABOUT</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-container>
-  </div>
+  <v-container fluid fill-height>
+    <v-row justify="space-around" align="center">
+      <v-col align="center">
+        <div class="title-text-home">HI!</div>
+        <div class="content-text-home">
+          <h3>Front-end Developer | Gibraltar</h3><br> A graduate of Internet Computing, I
+          combine my education with 6 years commercial experience in CSS,
+          JavaScript, React and design to produce creative and effective
+          websites for happy clients. I enjoy turning complex problems into
+          simple, beautiful and intuitive solutions. When I'm not coding or
+          pushing pixels, you'll find me in the gym, playing Football or scoring
+          over par on the Golf course.
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import path from "path";
 export default {
   name: "Main",
-  computed: {
-    drawer: {
-      get() {
-        return this.$store.state.drawer;
-      },
-      set(newBool) {
-        return this.$store.dispatch("setDrawer", newBool);
-      },
-    },
-  },
+  computed: {},
   data() {
-    return {
-      // src: "./assets/images/pug.jpg",
-      src: path.join(__dirname, "src", "assets", "images", "pug.jpg"),
-    };
+    return {};
   },
 };
 </script>
 
-<style scoped>
+<style>
 .main-text {
   /* TEXT COLOR */
   color: #eef1f3;
+}
+
+.content-text-home {
+  color: #e1f5fe;
+  font-size: large;
+  line-height: 1.7em;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding: 16px 16px 6px 16px;
+}
+
+.content-text-mobile {
+  color: #e1f5fe;
+  font-size: 17px;
+  line-height: 1.7em;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding: 16px 16px 6px 16px;
+}
+
+.content-text-home p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title-text-home {
+  color: #fff176;
+  font-size: xxx-large;
+  font-weight: bold;
+  line-height: 1.7em;
+  padding: 16px 1px 6px 1px;
 }
 </style>

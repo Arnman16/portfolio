@@ -320,7 +320,7 @@ export default new Vuex.Store({
             else router.push('/unpublished');
 
         },
-        async editPost({ dispatch, state }, post) {
+        async editPost({ state }, post) {
             var user = fb.auth.currentUser;
             if (!user) {
                 console.log("Not logged signed in");
@@ -336,16 +336,9 @@ export default new Vuex.Store({
             const content = state.editorContent;
             const plainText = state.editorContentPlainText;
             const story = state.story;
-            const created = state.post.created;
             const modified = new Date();
             // UPDATE
-            await fb.postsCollection.doc(post.slug).set({
-                // await fb.postsCollection.add({
-                user: {
-                    id: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                },
+            await fb.postsCollection.doc(post.slug).update({
                 title: post.title,
                 category: post.category,
                 slug: post.slug,
@@ -353,11 +346,10 @@ export default new Vuex.Store({
                 content: content,
                 plainText: plainText,
                 story: story,
-                created: created,
                 modified: modified,
             });
-            dispatch('fetchPosts');
-            router.push('/posts');
+            if (post.published) router.push('/posts');
+            else router.push('/unpublished');
         },
         setPost: ({ commit, state }, newPost) => {
             commit('SET_POST', newPost)
