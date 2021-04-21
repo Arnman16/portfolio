@@ -15,7 +15,7 @@ import Posts from "@/components/Posts.vue";
 import Post from "@/components/Post.vue";
 // import Unpublished from "@/components/Unpublished.vue";
 // import UnpublishedPost from "@/components/UnpublishedPost.vue";
-import Edit from "@/components/Edit.vue";
+// import Edit from "@/components/Edit.vue";
 import store from "@/store"
 
 
@@ -74,7 +74,7 @@ const routes = [
     {
         path: '/edit/:slug',
         name: "Edit",
-        component: Edit,
+        component: Submit,
         beforeEnter: ifAuthenticated,
     },
     {

@@ -2,7 +2,7 @@
   <div>
     <v-fab-transition>
       <v-btn
-        v-if="user.isAuthenticated" 
+        v-if="user.isAuthenticated"
         to="/submit"
         fab
         large
@@ -17,6 +17,14 @@
       </v-btn>
     </v-fab-transition>
     <v-container>
+      <div v-if="!posts.length" class="text--primary">
+        <v-row justify="space-around" align="center">
+          <v-col align="center">
+            There's nothing here...<br />
+            <v-btn outlined small to="/submit">Create a Post?</v-btn></v-col
+          ></v-row
+        >
+      </div>
       <transition-group name="list" tag="div" class="py-0">
         <div v-for="(post, i) in posts" :key="post.slug" :v-show="post">
           <v-hover v-slot="{ hover }">
@@ -38,19 +46,19 @@
                       {{ post.title }}
                     </v-list-item-title>
                     <v-list-item-subtitle>
-                      <p>{{ post.plainText | trimLength }}</p>
+                      <span>{{ post.plainText | trimLength }}</span>
                     </v-list-item-subtitle>
                     <!-- <v-divider class="ma-3"></v-divider> -->
-                    <p class="text-caption">{{ post.created | formatDate }}</p>
+                    <span class="text-caption my-date">{{
+                      post.created | formatDate
+                    }}</span>
                   </v-list-item-content>
 
-                  <v-list-item-avatar
-                    tile
-                    size="80"
-                    color="grey"
+                  <v-list-item-avatar tile size="120" color="black"
+                    ><v-img :src="defaultThumb"></v-img
                   ></v-list-item-avatar>
                 </v-list-item>
-                <v-list-item>
+                <v-list-item v-if="user.isAuthenticated">
                   <v-row>
                     <v-spacer></v-spacer>
                     <v-col cols="1" align="center" class="pa-0">
@@ -110,6 +118,7 @@
 <script>
 // import { postsCollection, firebase } from "../db";
 import moment from "moment";
+const defaultThumb = require("../projects/images/AaronLogoYellowW.png");
 export default {
   name: "posts",
   computed: {
@@ -165,6 +174,7 @@ export default {
     return {
       postRef: {},
       signedIn: {},
+      defaultThumb: defaultThumb,
       deleteConfirmation: false,
       deleteThis: {
         title: "",
@@ -228,5 +238,9 @@ export default {
 
 .list-move {
   transition: transform 1s ease-out;
+}
+
+.my-date {
+  opacity: 0.3;
 }
 </style>

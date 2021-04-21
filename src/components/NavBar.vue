@@ -16,22 +16,41 @@
           loop="false"
         >
           <span duration="150"
-            >AaronNoseworth<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Noseworth</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="150"
-            >AaronNosewort<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Nosewort</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="150"
-            >AaronNosewor<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Nosewor</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="150"
-            >AaronNosewo<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Nosewo</span
+            ><span class="my-yellow">▌</span></span
           >
-          <span duration="150">AaronNosew<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNose<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNos<span class="my-yellow">▌</span></span>
-          <span duration="300">AaronNo<span class="my-yellow">▌</span></span>
-          <span duration="300">AaronN<span class="my-yellow">▌</span></span>
+          <span duration="150"
+            >Aaron<span class="my-silver">Nosew</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nose</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nos</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="300"
+            >Aaron<span class="my-silver">No</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="300"
+            >Aaron<span class="my-silver">N</span
+            ><span class="my-yellow">▌</span></span
+          >
           <span duration="125">Aaron<span class="my-yellow">▌</span></span>
           <span duration="400">Aaro<span class="my-yellow">▌</span></span>
         </keyframes>
@@ -53,30 +72,51 @@
           :on-end="afterIntro"
           loop="false"
         >
-          <span duration="150">AaronN<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNo<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNos<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNose<span class="my-yellow">▌</span></span>
-          <span duration="150">AaronNosew<span class="my-yellow">▌</span></span>
           <span duration="150"
-            >AaronNosewor<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">N</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="150"
-            >AaronNosewort<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">No</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nos</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nose</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nosew</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nosewor</span
+            ><span class="my-yellow">▌</span></span
+          >
+          <span duration="150"
+            >Aaron<span class="my-silver">Nosewort</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="300"
-            >AaronNoseworth<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Noseworth</span
+            ><span class="my-yellow">▌</span></span
           >
           <span duration="300"
-            >AaronNoseworthy<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Noseworthy</span
+            ><span class="my-yellow">▌</span></span
           >
         </keyframes>
         <keyframes component="span" v-show="!intro" loop="true">
           <span duration="600"
-            >AaronNoseworthy<span class="my-clear">▌</span></span
+            >Aaron<span class="my-silver">Noseworthy</span
+            ><span class="my-clear">▌</span></span
           >
           <span duration="600"
-            >AaronNoseworthy<span class="my-yellow">▌</span></span
+            >Aaron<span class="my-silver">Noseworthy</span
+            ><span class="my-yellow">▌</span></span
           >
         </keyframes>
       </span>
@@ -89,20 +129,21 @@
         v-for="(item, i) in menuItems"
         :key="i"
       >
-          <v-hover v-slot="{ hover }">
-            <v-btn
-              tile
-              text
-              plain
-              :color="item.color"
-              class="no-uppercase btn-trans pa-2"
-              :class="{
-                'on-hover': hover || $route.name == item.title,
-              }"
-              :to="item.path"
-              ><v-img class="mr-4 sep" width="12" :src="item.seperator"></v-img>{{ item.title }}
-            </v-btn>
-          </v-hover>
+        <v-hover v-slot="{ hover }">
+          <v-btn
+            tile
+            text
+            plain
+            :color="item.color"
+            class="no-uppercase btn-trans pa-2"
+            :class="{
+              'on-hover': hover || $route.name == item.title,
+            }"
+            :to="item.path"
+            ><v-img class="mr-4 sep" width="12" :src="item.seperator"></v-img
+            >{{ item.title }}
+          </v-btn>
+        </v-hover>
       </span>
     </v-toolbar-items>
     <!-- </span> -->
@@ -193,11 +234,16 @@ export default {
     },
     setIntro() {
       this.getFrames();
-      if (this.lastRoute == "Home" || this.routeName == "Home")
+      if (
+        this.lastRoute == "Home" ||
+        this.routeName == "Home" ||
+        this.lastRoute == ""
+      )
         this.intro = true;
       this.lastRoute = this.routeName;
     },
     getFrames() {
+      // Spelling out each subpage with keyframes (not working)
       const split = this.$route.name.split("");
       let routeFrames = [];
       let routeFrame = "";
@@ -209,7 +255,7 @@ export default {
       console.log(routeFrames);
     },
     created() {
-      this.$refs.myKeyframes.stop = false;
+      // this.$refs.myKeyframes.stop = false;
       this.routeFrames = new Array(this.$route.name.length);
       this.getFrames();
     },
@@ -218,20 +264,25 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 .my-title {
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   font-size: large;
 }
 .btn-trans {
   transition: opacity 0.25s ease-in-out;
   font-size: medium;
-  font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
+  font-family: "Source Code Pro", monospace;
 }
 
 .btn-trans:not(.on-hover) {
   opacity: 0.9;
+  font-weight: normal;
   filter: grayscale(90%);
+}
+.my-silver {
+  color: rgb(201, 201, 201);
 }
 .my-yellow {
   color: rgb(200, 252, 118);

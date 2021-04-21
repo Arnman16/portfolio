@@ -21,14 +21,14 @@
           <v-img
             max-width="30"
             :src="hamburgerHover"
-            @click.stop="drawer = !drawer"
+            @click.stop="navDrawer = !navDrawer"
           ></v-img>
         </v-btn>
       </v-hover>
     </v-app-bar>
 
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="navDrawer"
       color="background"
       clipped
       app
@@ -167,6 +167,7 @@ export default {
     route2: {},
     loginDialog: false,
     isHome: true,
+    navDrawer: false,
     isRoute2: false,
     logo: logo,
     logoHover: logoHover,

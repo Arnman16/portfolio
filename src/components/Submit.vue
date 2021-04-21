@@ -92,6 +92,14 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile;
     },
+    post: {
+      get() {
+        return this.$store.getters.post;
+      },
+      set(newPost) {
+        return this.$store.dispatch("setPost", newPost);
+      },
+    },
     loading: {
       get() {
         return this.$store.getters.loading;
@@ -109,6 +117,12 @@ export default {
       },
     },
   },
+  watch: {
+    post() {
+      this.title = this.post.title;
+      this.category = this.post.category;
+    },
+  },
   data() {
     return {
       // src: "./assets/images/pug.jpg",
@@ -117,8 +131,8 @@ export default {
       input: "",
       title: "",
       tab: null,
-      categories: ["Blog", "Snippet"],
-      category: "Blog",
+      categories: ["Unpublished", "Blog", "Snippet"],
+      category: "Unpublished",
       story: "",
       showStory: false,
       published: false,
@@ -162,22 +176,46 @@ export default {
       });
       // console.log('TEST TEST TEST MOFO', test);
     },
-    save(isPublished) {
+    save() {
       this.createStory();
       this.loading = true;
+      let published = false;
+      if (this.category != "Unpublished") {
+        published = true;
+      }
       const title = this.title;
       const slug = this.slugify(title);
-      const published = isPublished;
       const category = this.category;
-      this.$store.dispatch("createPost", {
-        title: title,
-        slug: slug,
-        published: published,
-        category: category,
-      });
+      if (this.$route.name == "Edit") {
+        this.$store.dispatch("editPost", {
+          title: title,
+          slug: slug,
+          oldSlug: this.$route.params.slug,
+          published: published,
+          category: category,
+        });
+      } else {
+        this.$store.dispatch("createPost", {
+          title: title,
+          slug: slug,
+          published: published,
+          category: category,
+        });
+      }
+    },
+    async fetchData() {
+      await this.$store
+        .dispatch("fetchPostEdit", this.$route.params.slug)
+        .then(() => {
+          this.$store.dispatch("setEditorContent", this.post.content);
+        });
     },
   },
   created() {
+    if (this.$route.name == "Edit") {
+      console.log("EDIT");
+      this.fetchData();
+    }
     this.loading = false;
   },
 };
@@ -209,7 +247,8 @@ export default {
 .ql-toolbar.ql-snow {
   background-color: rgb(190, 193, 201);
   border: 1.5px solid rgb(61, 61, 61);
-  height: auto;
+  padding: 3px;
+  height: 54px;
 }
 .v-window-item--active {
   height: inherit;

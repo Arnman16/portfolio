@@ -281,20 +281,13 @@ export default new Vuex.Store({
             // fetch user profile and set in state
             dispatch('fetchUser', user)
         },
-        async createPost({ dispatch, state }, post) {
+        async createPost({ state }, post) {
             var user = fb.auth.currentUser;
             if (!user) {
                 console.log("Not logged signed in");
                 router.push('/login');
                 return
             }
-            // var name, email, photoUrl, uid, emailVerified;
-            // name = user.displayName;
-            // email = user.email;
-            // photoUrl = user.photoURL;
-            // emailVerified = user.emailVerified;
-            // uid = user.uid;
-            // 
             // The user's ID, unique to the Firebase project. Do NOT use
             // this value to authenticate with your backend server, if
             // you have one. Use User.getToken() instead.
@@ -322,8 +315,10 @@ export default new Vuex.Store({
                 created: created,
                 modified: modified,
             });
-            dispatch('fetchPosts');
-            router.push('/posts');
+            // dispatch('fetchPosts');
+            if (post.published) router.push('/posts');
+            else router.push('/unpublished');
+
         },
         async editPost({ dispatch, state }, post) {
             var user = fb.auth.currentUser;
