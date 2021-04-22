@@ -1,5 +1,4 @@
 <template>
-  <div @click="drawer = false">
     <v-container fluid>
       <!-- <v-btn @click="testButton">HIHIHI</v-btn>
       {{ testOutput }} -->
@@ -52,8 +51,7 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-hover v-slot="{ hover }">
                         <v-icon
-                          :color="hover ? 'red' : 'white'"
-                          dark
+                          :color="hover ? 'red' : 'secondary'"
                           v-bind="attrs"
                           v-on="on"
                           class="pl-2 pr-2"
@@ -72,7 +70,6 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
 </template>
 
 <script>

@@ -171,7 +171,12 @@ export default new Vuex.Store({
             commit('SET_STORY', []);
             // remove potentially malicious html
             console.log(state.editorContent, state.editorContent.length);
-            const cleanedHtml = sanitizeHtml(state.editorContent);
+            const cleanedHtml = sanitizeHtml(state.editorContent, {
+                allowedClasses: {
+                    '*': ['ql-size-large', 'ql-size-huge', 'ql-size-small', 'ql-align-center', 'ql-align-right']
+                },
+                allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+            });
             console.log(cleanedHtml, cleanedHtml.length);
 
             let contentHtml = cleanedHtml.split('{{{');
@@ -184,6 +189,7 @@ export default new Vuex.Store({
                     const plainBlock = textSection.split('}}}');
                     if (plainBlock.length === 1) {
                         // adding vuetify's responsive content css helper class to images. 
+
                         let newImageFormat = htmlBlock[0].replace('<img', '<img class="v-responsive__content" ')
                         story.push({
                             type: 'text',
@@ -191,7 +197,8 @@ export default new Vuex.Store({
                         })
                     }
                     else {
-                        let newImageFormat = htmlBlock[1].replace('<img', '<img class="v-responsive__content" ')
+                        let newImageFormat = htmlBlock[1].replace('<img', '<img class="v-responsive__content" ');
+
                         let code, lang, parseLang;
                         if (plainBlock[0].includes('%%')) {
                             // select the coding language with the opening brackets
@@ -292,6 +299,12 @@ export default new Vuex.Store({
             // this value to authenticate with your backend server, if
             // you have one. Use User.getToken() instead.
             const content = state.editorContent;
+            let thumbnail = '';
+            // takes the first image in a post and makes it the thumbnail
+            let thumb = content.split('img src="');
+            if (thumb.length > 1) {
+                thumbnail = thumb[1].split('"')[0];
+            }
             const plainText = state.editorContentPlainText;
             const story = state.story;
             const created = new Date();
@@ -306,6 +319,7 @@ export default new Vuex.Store({
                 },
                 author_uid: user.uid,
                 title: post.title,
+                thumbnail: thumbnail,
                 category: post.category,
                 slug: post.slug,
                 published: post.published,
@@ -328,6 +342,12 @@ export default new Vuex.Store({
                 return
             }
             const content = state.editorContent;
+            let thumbnail = '';
+            // takes the first image in a post and makes it the thumbnail
+            let thumb = content.split('img src="');
+            if (thumb.length > 1) {
+                thumbnail = thumb[1].split('"')[0];
+            }
             const plainText = state.editorContentPlainText;
             const story = state.story;
             const modified = new Date();
@@ -346,6 +366,7 @@ export default new Vuex.Store({
                     },
                     author_uid: user.uid,
                     title: post.title,
+                    thumbnail: thumbnail,
                     category: post.category,
                     slug: post.slug,
                     published: post.published,
@@ -360,6 +381,7 @@ export default new Vuex.Store({
                 // UPDATE
                 await fb.postsCollection.doc(post.slug).update({
                     title: post.title,
+                    thumbnail: thumbnail,
                     category: post.category,
                     slug: post.slug,
                     published: post.published,

@@ -1,7 +1,6 @@
 <template>
-  <div @click="drawer = false">
-    <v-container>
-      <v-card class="mx-auto ma-3" color="rgba(0,0,0,0.2)" transition>
+    <v-container fluid fill-height>
+      <v-card class="mx-auto ma-3 ba-2" color="rgba(0,0,0,0.2)" transition>
         <v-card-title>{{ project.name }}</v-card-title>
         <v-img
           outline
@@ -30,7 +29,7 @@
         <v-card
           tile
           outlined
-          class="mr-3 ml-3 mb-3cc"
+          class="mr-3 ml-3 mb-3"
           color="background lighten-1"
         >
           <v-card-actions>
@@ -96,10 +95,8 @@
             </div>
           </v-card-actions>
         </v-card>
-        <p><v-divider></v-divider></p>
       </v-card>
     </v-container>
-  </div>
 </template>
 
 <script>

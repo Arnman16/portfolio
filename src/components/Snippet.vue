@@ -199,7 +199,7 @@ export default {
   z-index: 1;
 }
 .code-icon-wrapper {
-  max-width: 700px;
+  max-width: 720px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -208,8 +208,8 @@ export default {
 }
 .code-icon {
   position: absolute !important;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   z-index: 2;
 }
 .v-snack__content {

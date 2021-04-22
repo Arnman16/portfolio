@@ -16,7 +16,7 @@
       <v-row
         justify="space-around"
         align="center"
-        class="ml-5 pl-5 pr-5 mr-5 mt-0 mb-0"
+        class="ml-4 pl-4 pr-4 mr-4 mt-0 mb-0"
       >
         <v-col class="pa-1" cols="1">
           <button class="ql-bold">Bold</button>
@@ -34,25 +34,25 @@
             <option value="huge"></option>
           </select>
         </v-col>
-        <v-col class="pa-2" cols="2">
-          <select class="ql-font">
+        <v-col class="pa-2" cols="1">
+          <select class="ql-align">
             <option selected="selected"></option>
-            <option value="serif"></option>
-            <option value="monospace"></option>
+            <option value="left"></option>
+            <option value="center"></option>
+            <option value="right"></option>
+            <option value="justify"></option>
           </select>
         </v-col>
         <!-- Custom -->
         <v-spacer></v-spacer>
-        <v-col align="center" class="pa-2 mx-auto" cols="3">
-          <v-btn
-            light
-            small
-            block
-            color="white"
-            class="toolbar-button no-uppercase mx-auto"
-            @click.prevent="submit(published)"
-          >
-            Save
+        <v-col align="center" class="pa-1 mx-auto" cols="1">
+          <v-btn light large @click.prevent="submit(published)" icon
+            ><v-icon>mdi-content-save</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col align="center" class="pa-1 mx-auto" cols="1">
+          <v-btn light large icon @click.prevent="$router.back()"
+            ><v-icon>mdi-window-close</v-icon>
           </v-btn>
         </v-col>
       </v-row>
@@ -110,6 +110,26 @@ export default {
       editorOption: {
         modules: {
           toolbar: "#toolbar",
+          clipboard: {
+            allowed: {
+              tags: [
+                "a",
+                "img",
+                "b",
+                "strong",
+                "u",
+                "s",
+                "i",
+                "p",
+                "br",
+                "ul",
+                "ol",
+                "li",
+                "span",
+              ],
+              attributes: ["href", "src","rel", "target", "class"],
+            },
+          },
         },
       },
     };
@@ -137,7 +157,11 @@ export default {
       console.log("HIHI");
     },
   },
+  created() {
+    this.editorContent = '';
+  },
   mounted() {
+
     // quill by default saves lines as <p></p> creating way too much line spacing.
     // rather than using css to modify the p lineheight I have added the following method
     // to register the Blocks as pre and have an accompanying .pre css class to get the
@@ -174,7 +198,7 @@ export default {
 
 #toolbar .toolbar-button {
   /* margin-left: 5px; */
-  font-size: 16px;
+  font-size: 14px;
   color: rgb(56, 54, 54);
   margin: 0;
   padding: 0;

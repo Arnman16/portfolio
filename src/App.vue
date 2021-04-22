@@ -1,9 +1,9 @@
 <template>
   <v-app
     class="my-app"
-    :style="{ background: $vuetify.theme.themes.dark.background }"
+    :style="$vuetify.theme.dark ? { background: $vuetify.theme.themes.dark.background } : { background: $vuetify.theme.themes.light.background }"
   >
-    <v-app-bar app flat dense hide-on-scroll clipped-right color="#120a23bd">
+    <v-app-bar app flat dense hide-on-scroll dark clipped-right :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'">
       <div v-if="noise" class="noise"><span class="bg"></span></div>
       <div v-else></div>
       <NavBar />
@@ -29,7 +29,8 @@
 
     <v-navigation-drawer
       v-model="navDrawer"
-      color="background"
+      dark
+      :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'"
       clipped
       app
       floating
@@ -41,7 +42,7 @@
     </v-navigation-drawer>
     <v-main>
       <transition name="page" mode="out-in">
-        <v-container fluid :class="isMobile ? 'ma-0 pa-0' : 'mainContainer'">
+        <v-container fluid fill-height :class="isMobile ? 'ma-0 pa-0' : 'mainContainer'">
           <router-view></router-view>
         </v-container>
       </transition>
@@ -288,7 +289,6 @@ html {
   height: 100%;
   display: block;
 }
-
 .bg_nav {
   background-image: linear-gradient(#120a23, #120a23bd);
   position: absolute;

@@ -12,12 +12,17 @@
             <v-container>
               <v-row justify="space-around" align="center">
                 <v-col align="center">
-                  <div class="text-caption">
-                    Posted {{ post.created | formatDate }}
-                    <span v-if="post.modified"
-                      >(Updated {{ post.modified | formatDate }})</span
-                    >
-                  </div>
+                  <v-tooltip open-delay="500" bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                      <div v-bind="attrs" v-on="on" class="text-caption">
+                        Posted {{ post.created | formatDate }}
+                        <span v-if="post.modified"
+                          >(Updated {{ post.modified | formatDate }})</span
+                        >
+                      </div>
+                    </template>
+                    {{ post.created | date }}
+                  </v-tooltip>
                   <!-- </v-col>
                 <v-col> -->
                   <v-tooltip bottom>
@@ -51,9 +56,11 @@
           v-for="(section, index) in post.story"
           :key="index"
         >
-          <div v-if="section.type == 'text'">
-            <span class="content-text" v-html="section.content"> </span>
-          </div>
+          <div
+            v-if="section.type == 'text'"
+            class="content-text"
+            v-html="section.content"
+          ></div>
           <div v-else>
             <snippet :code="section.content" :lang="section.lang" />
           </div>
@@ -80,6 +87,13 @@ export default {
 
       let date = val.toDate();
       return moment(date).fromNow();
+    },
+    date(val) {
+      if (!val) {
+        return "-";
+      }
+      let date = val.toDate();
+      return moment(date);
     },
     capitalize: function (value) {
       if (!value) return "";
@@ -139,22 +153,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .CodeMirror {
   height: auto;
 }
 .content-text {
-  color: #e1f5fe;
-  /* font-size: 17px; */
+  /* color: #e1f5fe; */
+  font-size: 18px;
+  font-weight: 300;
   line-height: 1.7em;
-  max-width: 682px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
-  padding: 16px 16px 6px 16px;
+  padding: 16px 0px 6px 0px;
 }
 
 .content-text p {
-  max-width: 682px;
+  max-width: 720px;
+  margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
 }
@@ -168,5 +184,20 @@ export default {
 .post-container {
   max-width: 800px;
   padding: 0;
+}
+.ql-size-huge {
+  font-size: xxx-large;
+}
+.ql-size-large {
+  font-size: xx-large;
+}
+.ql-size-normal {
+  font-size: x-large;
+}
+.ql-size-small {
+  font-size: small;
+}
+.ql-align-center {
+  text-align: center;
 }
 </style>

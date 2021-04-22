@@ -1,17 +1,14 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid>
     <v-row justify="space-around" align="center">
       <v-col align="center">
-        <div class="title-text-home">HI!</div>
+        <div class="title-text-home">Hi, I'm Aaron.</div>
         <div class="content-text-home">
-          <h3>Front-end Developer | Gibraltar</h3>
-          <br />
-          A graduate of Internet Computing, I combine my education with 6 years
-          commercial experience in CSS, JavaScript, React and design to produce
-          creative and effective websites for happy clients. I enjoy turning
-          complex problems into simple, beautiful and intuitive solutions. When
-          I'm not coding or pushing pixels, you'll find me in the gym, playing
-          Football or scoring over par on the Golf course.
+          I love building intuitive apps that just <i>work.</i>
+          <h4>
+            "When You Do Things Right, People Won’t Be Sure You’ve Done Anything
+            at All"
+          </h4>
         </div>
       </v-col>
     </v-row>
@@ -42,8 +39,8 @@ export default {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
-  padding: 16px 16px 6px 16px;
+  /* text-align: left; */
+  padding: 0px 16px 6px 16px;
 }
 
 .content-text-mobile {
@@ -57,6 +54,9 @@ export default {
   padding: 16px 16px 6px 16px;
 }
 
+h4 {
+  padding-top: 10px;
+}
 .content-text-home p {
   max-width: 760px;
   margin-left: auto;
@@ -68,6 +68,6 @@ export default {
   font-size: xxx-large;
   font-weight: bold;
   line-height: 1.7em;
-  padding: 16px 1px 6px 1px;
+  padding: 16px 1px 1px 1px;
 }
 </style>

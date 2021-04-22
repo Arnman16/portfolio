@@ -54,6 +54,27 @@
             >
           </v-list-item-action>
         </v-list-item>
+        <v-list-item>
+          <div>
+            <v-tooltip v-if="!$vuetify.theme.dark" bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn v-on="on" color="info" small fab @click="darkMode">
+                  <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
+                </v-btn>
+              </template>
+              <span>Dark Mode On</span>
+            </v-tooltip>
+
+            <v-tooltip v-else bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn v-on="on" color="info" small fab @click="darkMode">
+                  <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
+                </v-btn>
+              </template>
+              <span>Dark Mode Off</span>
+            </v-tooltip>
+          </div>
+        </v-list-item>
       </v-list>
     </v-container>
   </div>
@@ -120,6 +141,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    darkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
   },
 };

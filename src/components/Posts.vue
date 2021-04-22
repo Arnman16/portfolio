@@ -55,7 +55,9 @@
                   </v-list-item-content>
 
                   <v-list-item-avatar tile size="120" color="black"
-                    ><v-img :src="defaultThumb"></v-img
+                    ><v-img
+                      :src="post.thumbnail ? post.thumbnail : defaultThumb"
+                    ></v-img
                   ></v-list-item-avatar>
                 </v-list-item>
                 <v-list-item v-if="user.isAuthenticated">
@@ -233,23 +235,24 @@ export default {
   filter: grayscale(90%);
 }
 .list {
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(50%);
+}
+.list-move-to {
+  opacity: 0;
 }
 
 .list-enter-active,
 .list-leave-active {
-  transition: opacity 1s ease;
-  transform: translate 1s ease-out;
+  transition: opacity 0.2s ease;
 }
 
 .list-move {
-  transition: transform 1s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 
 .my-date {

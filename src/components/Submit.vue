@@ -279,7 +279,7 @@ export default {
 }
 
 .content-text {
-  color: #e1f5fe;
+  /* color: #e1f5fe; */
   /* font-size: 17px; */
   line-height: 1.7em;
   max-width: 682px;
