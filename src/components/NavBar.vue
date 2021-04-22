@@ -129,7 +129,7 @@
         v-for="(item, i) in menuItems"
         :key="i"
       >
-        <v-hover v-slot="{ hover }">
+        <v-hover v-if="getAccess(item.needsAuth)" v-slot="{ hover }">
           <v-btn
             tile
             text
@@ -178,6 +178,9 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.mobile;
     },
+    user() {
+      return this.$store.getters.user;
+    },
     routeName() {
       return this.$route.name;
     },
@@ -200,6 +203,7 @@ export default {
           icon: "home",
           color: "blue",
           seperator: waterPointHover,
+          needsAuth: false,
         },
         {
           title: "About",
@@ -207,6 +211,7 @@ export default {
           icon: "home",
           color: "green",
           seperator: wavePointHover,
+          needsAuth: false,
         },
         {
           title: "Posts",
@@ -214,6 +219,7 @@ export default {
           icon: "home",
           color: "red",
           seperator: musicPointHover,
+          needsAuth: false,
         },
         {
           title: "Projects",
@@ -221,6 +227,15 @@ export default {
           icon: "home",
           color: "yellow",
           seperator: musicPointHover,
+          needsAuth: false,
+        },
+        {
+          title: "Unpublished",
+          path: "/unpublished",
+          icon: "home",
+          color: "yellow",
+          seperator: musicPointHover,
+          needsAuth: true,
         },
       ],
     };
@@ -228,6 +243,11 @@ export default {
   methods: {
     afterIntro() {
       this.intro = false;
+    },
+    getAccess(needsAuth) {
+      if (!needsAuth) return true;
+      console.log(this.user.isAuthenticated);
+      return this.user.isAuthenticated;
     },
     setIntro() {
       this.getFrames();

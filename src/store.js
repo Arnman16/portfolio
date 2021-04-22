@@ -327,27 +327,48 @@ export default new Vuex.Store({
                 router.push('/login');
                 return
             }
+            const content = state.editorContent;
+            const plainText = state.editorContentPlainText;
+            const story = state.story;
+            const modified = new Date();
+            const created = state.post.created;
             if (post.oldSlug != post.slug) {
                 // removes old post if they change the title.
                 // this is needed because the post name is tied to the primary key 
                 console.log('rename detected, removing old post.')
                 fb.postsCollection.doc(post.oldSlug).delete();
+                await fb.postsCollection.doc(post.slug).set({
+                    // await fb.postsCollection.add({
+                    user: {
+                        id: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                    },
+                    author_uid: user.uid,
+                    title: post.title,
+                    category: post.category,
+                    slug: post.slug,
+                    published: post.published,
+                    content: content,
+                    plainText: plainText,
+                    story: story,
+                    created: created,
+                    modified: modified,
+                });
             }
-            const content = state.editorContent;
-            const plainText = state.editorContentPlainText;
-            const story = state.story;
-            const modified = new Date();
-            // UPDATE
-            await fb.postsCollection.doc(post.slug).update({
-                title: post.title,
-                category: post.category,
-                slug: post.slug,
-                published: post.published,
-                content: content,
-                plainText: plainText,
-                story: story,
-                modified: modified,
-            });
+            else {
+                // UPDATE
+                await fb.postsCollection.doc(post.slug).update({
+                    title: post.title,
+                    category: post.category,
+                    slug: post.slug,
+                    published: post.published,
+                    content: content,
+                    plainText: plainText,
+                    story: story,
+                    modified: modified,
+                });
+            }
             if (post.published) router.push('/posts');
             else router.push('/unpublished');
         },
@@ -391,16 +412,30 @@ export default new Vuex.Store({
             });
         },
         async fetchPosts({ commit }) {
-            let published = false;
-            if (router.currentRoute.path === '/posts') published = true;
-            console.log('fetchPosts')
-            fb.postsCollection.where('published', "==", published).orderBy('created', 'desc').onSnapshot(snapshot => {
+            fb.postsCollection.where('published', "==", true).orderBy('created', 'desc').onSnapshot(snapshot => {
                 let postsArray = []
 
                 snapshot.forEach(doc => {
                     let post = doc.data()
                     post.id = doc.id
 
+                    postsArray.push(post)
+                });
+                commit('SET_POSTS', postsArray);
+                commit('SET_LOADING', false);
+                return postsArray;
+
+
+            })
+        },
+        async fetchUnpublishedPosts({ commit }) {
+            if (!fb.auth.currentUser) return;
+            fb.postsCollection.where('published', "==", false).orderBy('created', 'desc').onSnapshot(snapshot => {
+                let postsArray = []
+
+                snapshot.forEach(doc => {
+                    let post = doc.data()
+                    post.id = doc.id
                     postsArray.push(post)
                 });
                 commit('SET_POSTS', postsArray);

@@ -52,8 +52,7 @@
           :key="index"
         >
           <div v-if="section.type == 'text'">
-            <span class="content-text" v-html="section.content">
-            </span>
+            <span class="content-text" v-html="section.content"> </span>
           </div>
           <div v-else>
             <snippet :code="section.content" :lang="section.lang" />
@@ -140,13 +139,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .CodeMirror {
   height: auto;
 }
 .content-text {
   color: #e1f5fe;
-  font-size: 17px;
+  /* font-size: 17px; */
   line-height: 1.7em;
   max-width: 682px;
   margin-left: auto;

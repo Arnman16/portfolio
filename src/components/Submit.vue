@@ -45,8 +45,8 @@
               <div v-show="showStory">
                 <v-container v-for="(section, index) in story" :key="index">
                   <span v-if="section.type == 'text'">
-                    <v-card-text class="content-text" v-html="section.content">
-                    </v-card-text>
+                    <div class="content-text" v-html="section.content">
+                    </div>
                   </span>
                   <span v-else>
                     <snippet :code="section.content" :lang="section.lang" />
@@ -167,10 +167,8 @@ export default {
     },
     async createStory() {
       this.showStory = false;
-      this.loading = true;
       this.story = {};
       await this.$store.dispatch("createStory").then((story) => {
-        this.loading = false;
         this.story = story;
         this.showStory = true;
       });
@@ -282,7 +280,7 @@ export default {
 
 .content-text {
   color: #e1f5fe;
-  font-size: 17px;
+  /* font-size: 17px; */
   line-height: 1.7em;
   max-width: 682px;
   margin-left: auto;

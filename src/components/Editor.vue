@@ -52,7 +52,7 @@
             class="toolbar-button no-uppercase mx-auto"
             @click.prevent="submit(published)"
           >
-            Submit
+            Save
           </v-btn>
         </v-col>
       </v-row>

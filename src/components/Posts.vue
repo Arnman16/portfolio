@@ -17,7 +17,7 @@
       </v-btn>
     </v-fab-transition>
     <v-container fluid :class="isMobile ? 'ma-0 pa-0' : 'ma-2'">
-      <div v-if="!posts.length" class="text--primary">
+      <div v-if="!posts.length && !loading" class="text--primary">
         <v-row justify="space-around" align="center">
           <v-col align="center">
             There's nothing here...<br />
@@ -167,7 +167,11 @@ export default {
   watch: {
     $route() {
       this.loading = true;
-      this.$store.dispatch("fetchPosts");
+      if (this.$route.name == "Posts") {
+        this.$store.dispatch("fetchPosts");
+      } else if (this.$route.name == "Unpublished") {
+        this.$store.dispatch("fetchUnpublishedPosts");
+      }
     },
   },
   data() {
@@ -187,7 +191,11 @@ export default {
       this.post = this.posts[i];
     },
     getLink(slug) {
-      return "/posts/" + slug;
+      if (this.$route.name == "Posts") {
+        return "/posts/" + slug;
+      } else if (this.$route.name == "Unpublished") {
+        return "/unpublished/" + slug;
+      }
     },
     getDelete(post) {
       this.deleteConfirmation = true;
@@ -205,7 +213,11 @@ export default {
   created() {},
   mounted() {
     this.loading = true;
-    this.$store.dispatch("fetchPosts");
+    if (this.$route.name == "Posts") {
+      this.$store.dispatch("fetchPosts");
+    } else if (this.$route.name == "Unpublished") {
+      this.$store.dispatch("fetchUnpublishedPosts");
+    }
   },
 };
 </script>

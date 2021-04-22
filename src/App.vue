@@ -266,7 +266,7 @@ export default {
 }
 html {
   overflow-y: auto;
-  font-family: "Roboto";
+  /* font-family: "Roboto"; */
 }
 
 .mainContainer {

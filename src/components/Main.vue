@@ -4,13 +4,14 @@
       <v-col align="center">
         <div class="title-text-home">HI!</div>
         <div class="content-text-home">
-          <h3>Front-end Developer | Gibraltar</h3><br> A graduate of Internet Computing, I
-          combine my education with 6 years commercial experience in CSS,
-          JavaScript, React and design to produce creative and effective
-          websites for happy clients. I enjoy turning complex problems into
-          simple, beautiful and intuitive solutions. When I'm not coding or
-          pushing pixels, you'll find me in the gym, playing Football or scoring
-          over par on the Golf course.
+          <h3>Front-end Developer | Gibraltar</h3>
+          <br />
+          A graduate of Internet Computing, I combine my education with 6 years
+          commercial experience in CSS, JavaScript, React and design to produce
+          creative and effective websites for happy clients. I enjoy turning
+          complex problems into simple, beautiful and intuitive solutions. When
+          I'm not coding or pushing pixels, you'll find me in the gym, playing
+          Football or scoring over par on the Golf course.
         </div>
       </v-col>
     </v-row>
@@ -37,6 +38,7 @@ export default {
   color: #e1f5fe;
   font-size: large;
   line-height: 1.7em;
+  font-weight: 300;
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
