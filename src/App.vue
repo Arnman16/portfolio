@@ -47,7 +47,7 @@
         </v-container>
       </transition>
     </v-main>
-    <v-footer height="58" outlined padless color="rgba(0,0,0,0.01)">
+    <v-footer height="58" outlined padless :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'">
       <div v-if="noise" class="noise"><span class="bg_nav"></span></div>
       <Footer />
     </v-footer>

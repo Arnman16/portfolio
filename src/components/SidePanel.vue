@@ -22,11 +22,6 @@
         <v-divider></v-divider>
         <br /><br />
         <v-list-item>
-          <v-list-item-action>
-            <v-switch label="Noise" dense inset v-model="noise"></v-switch>
-          </v-list-item-action>
-        </v-list-item>
-        <v-list-item>
           <v-list-item-content
             v-text="
               currentUser.isAuthenticated ? currentUser.name : 'Not signed in.'
@@ -54,26 +49,43 @@
             >
           </v-list-item-action>
         </v-list-item>
+        <br /><br /><br />
         <v-list-item>
-          <div>
-            <v-tooltip v-if="!$vuetify.theme.dark" bottom>
-              <template v-slot:activator="{ on }">
-                <v-btn v-on="on" color="info" small fab @click="darkMode">
-                  <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
-                </v-btn>
-              </template>
-              <span>Dark Mode On</span>
-            </v-tooltip>
+          <v-card flat class="mx-auto" color="rgb(255,255,255,0.05)">
+            <v-row
+              justify="space-between"
+              class="mt-0 mb-0 ml-1 mr-1"
+              align="center"
+            >
+              <v-col align="center">
+                <v-tooltip v-if="!$vuetify.theme.dark" bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn v-on="on" color="info" x-small fab @click="darkMode">
+                      <v-icon class="mr-1">mdi-moon-waxing-crescent</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Dark Mode On</span>
+                </v-tooltip>
 
-            <v-tooltip v-else bottom>
-              <template v-slot:activator="{ on }">
-                <v-btn v-on="on" color="info" small fab @click="darkMode">
-                  <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
-                </v-btn>
-              </template>
-              <span>Dark Mode Off</span>
-            </v-tooltip>
-          </div>
+                <v-tooltip v-else bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn v-on="on" color="info" x-small fab @click="darkMode">
+                      <v-icon color="yellow">mdi-white-balance-sunny</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Dark Mode Off</span>
+                </v-tooltip>
+              </v-col>
+              <v-col align="center">
+                <v-switch
+                  label="Noise"
+                  x-small
+                  inset
+                  v-model="noise"
+                ></v-switch>
+              </v-col>
+            </v-row>
+          </v-card>
         </v-list-item>
       </v-list>
     </v-container>
@@ -88,13 +100,18 @@ export default {
       editTokenDialog: false,
       selectedItem: 0,
       items: [
-        { text: "My Projects", icon: "mdi-folder", link: "/projects" },
-        { text: "About", icon: "mdi-account-multiple", link: "/about" },
-        { text: "Log In", icon: "mdi-star", link: "/login" },
-        { text: "Posts", icon: "mdi-vuejs", link: "/posts" },
-        { text: "Offline", icon: "mdi-language-python", link: "#" },
-        { text: "Uploads", icon: "mdi-upload", link: "#" },
-        { text: "Backups", icon: "mdi-cloud-upload", link: "#" },
+        { text: "Home", icon: "mdi-home", link: "/" },
+        { text: "About", icon: "mdi-head-question", link: "/about" },
+        { text: "My Projects", icon: "mdi-view-grid", link: "/projects" },
+        // { text: "Log In", icon: "mdi-star", link: "/login" },
+        { text: "Posts", icon: "mdi-view-list", link: "/posts" },
+        {
+          text: "Unpublished",
+          icon: "mdi-view-list-outline",
+          link: "/unpublished",
+        },
+        // { text: "Uploads", icon: "mdi-upload", link: "#" },
+        // { text: "Backups", icon: "mdi-cloud-upload", link: "#" },
       ],
     };
   },
