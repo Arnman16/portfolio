@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="space-around" align="center">
       <v-col align="center">
-        <div class="title-text-home">Hi, I'm Aaron.</div>
+        <div class="title-text-home secondary--text" >Hi, I'm Aaron.</div>
         <div class="content-text-home">
           I love building intuitive apps that just <i>work.</i>
           <h4>
@@ -32,7 +32,7 @@ export default {
 }
 
 .content-text-home {
-  color: #e1f5fe;
+  /* color: #e1f5fe; */
   font-size: large;
   line-height: 1.7em;
   font-weight: 300;
@@ -64,7 +64,6 @@ h4 {
 }
 
 .title-text-home {
-  color: #fff176;
   font-size: xxx-large;
   font-weight: bold;
   line-height: 1.7em;

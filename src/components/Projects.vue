@@ -17,7 +17,7 @@
               transition="fade-transition"
             >
               <v-card
-                color="rgba(255,255,255,0.05)"
+                :color="$vuetify.theme.dark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.5)'"
                 :elevation="hover ? 12 : 2"
                 :class="{
                   'on-hover': (isMobile && isActive[index]) || hover,
@@ -36,7 +36,7 @@
                     height="300px"
                   >
                     <v-card-title v-text="project.name"></v-card-title>
-                    <v-card-text class="text--primary">
+                    <v-card-text dark>
                       <div>{{ project.summary }}</div>
                     </v-card-text>
                   </v-img></router-link
@@ -123,8 +123,8 @@ export default {
 }
 
 .v-card:not(.on-hover) {
-  opacity: 0.8;
-  filter: grayscale(90%);
+  opacity: 0.9;
+  filter: grayscale(70%);
 }
 
 .show-btns {

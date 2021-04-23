@@ -1,64 +1,62 @@
 <template>
-  <v-card height="100%" color="rgba(0,0,0,0.2)" transition>
-    <v-tabs background-color="rgba(0,0,0,0.2)" v-model="tab" grow>
-      <v-tab> Compose </v-tab>
-      <v-tab @click="createStory"> Preview </v-tab>
-      <v-tabs-items class="transparent" v-model="tab">
-        <v-tab-item>
+  <v-tabs dark slider-color="green" background-color="#000000dc" v-model="tab" grow>
+    <v-tab> Compose </v-tab>
+    <v-tab @click="createStory"> Preview </v-tab>
+    <v-tabs-items class="transparent" v-model="tab">
+      <v-tab-item>
+        <v-row justify="space-around" align="center">
+          <v-spacer v-if="!isMobile"></v-spacer>
+          <v-col class="ma-1">
+            <v-text-field
+              dense
+              hide-details="auto"
+              outlined
+              class="ma-2"
+              label="Title"
+              v-model="title"
+            ></v-text-field>
+          </v-col>
+          <v-col class="d-flex ma-0">
+            <v-select
+              dense
+              :items="categories"
+              hide-details="auto"
+              v-model="category"
+              label="Category"
+              outlined
+            ></v-select>
+          </v-col>
+          <v-spacer v-if="!isMobile"></v-spacer>
+        </v-row>
+        <v-row class="fill-height" justify="space-around" align="center">
+          <v-col class="fill-height" align="center">
+            <Editor :submit="save" />
+          </v-col>
+        </v-row>
+      </v-tab-item>
+      <v-tab-item>
+        <div>
           <v-row justify="space-around" align="center">
-            <v-spacer v-if="!isMobile"></v-spacer>
-            <v-col class="ma-1">
-              <v-text-field
-                dense
-                hide-details="auto"
-                outlined
-                label="Title"
-                v-model="title"
-              ></v-text-field>
-            </v-col>
-            <v-col class="d-flex ma-0">
-              <v-select
-                dense
-                :items="categories"
-                hide-details="auto"
-                v-model="category"
-                label="Category"
-                outlined
-              ></v-select>
-            </v-col>
-            <v-spacer v-if="!isMobile"></v-spacer>
-          </v-row>
-          <v-row class="fill-height" justify="space-around" align="center">
-            <v-col class="fill-height" align="center">
-              <Editor :submit="save" />
-            </v-col>
-          </v-row>
-        </v-tab-item>
-        <v-tab-item>
-          <div>
-            <v-row justify="space-around" align="center">
-              <v-col align="center">
-                <div class="text-h2">{{ title | capitalize }}</div>
-              </v-col></v-row
-            >
-            <v-slide-x-transition>
-              <div v-show="showStory">
-                <v-container v-for="(section, index) in story" :key="index">
-                  <span v-if="section.type == 'text'">
-                    <div class="content-text" v-html="section.content">
-                    </div>
-                  </span>
-                  <span v-else>
-                    <snippet :code="section.content" :lang="section.lang" />
-                  </span>
-                </v-container>
-              </div>
-            </v-slide-x-transition>
-          </div>
-        </v-tab-item>
-      </v-tabs-items>
-    </v-tabs>
-  </v-card>
+            <v-col align="center">
+              <div class="text-h2">{{ title | capitalize }}</div>
+            </v-col></v-row
+          >
+          <v-slide-x-transition>
+            <div v-show="showStory">
+              <v-container v-for="(section, index) in story" :key="index">
+                <span v-if="section.type == 'text'">
+                  <div class="content-text" v-html="section.content"></div>
+                </span>
+                <span v-else>
+                  <snippet :code="section.content" :lang="section.lang" />
+                </span>
+              </v-container>
+            </div>
+          </v-slide-x-transition>
+        </div>
+      </v-tab-item>
+    </v-tabs-items>
+  </v-tabs>
 </template>
 
 <script>
@@ -256,7 +254,8 @@ export default {
 .v-tabs {
   height: inherit;
   max-height: 100%;
-
+  border-radius: 25px;
+  border: 1.5px solid rgb(61, 61, 61);
   overflow-y: hidden;
 }
 

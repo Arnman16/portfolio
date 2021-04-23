@@ -10,14 +10,15 @@ export default new Vuetify({
         dark: true,
         themes: {
             dark: {
-                background: '#120a23'
+                background: '#120a23',
+                secondary: colors.blue.lighten3,
             },
             light: {
                 primary: colors.purple,
-                secondary: colors.grey.darken1,
+                secondary: colors.blue.darken3,
                 accent: colors.shades.black,
                 error: colors.red.accent3,
-                background: colors.white
+                background: 'rgb(210, 210, 210)'
             },
         }
     },

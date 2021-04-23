@@ -233,7 +233,7 @@ export default {
           title: "Unpublished",
           path: "/unpublished",
           icon: "home",
-          color: "yellow",
+          color: "grey",
           seperator: musicPointHover,
           needsAuth: true,
         },
@@ -293,13 +293,15 @@ export default {
   transition: opacity 0.25s ease-in-out;
   font-size: medium;
   font-weight: bold;
+  font-size: large;
   font-family: "Source Code Pro", monospace;
 }
 
 .btn-trans:not(.on-hover) {
-  opacity: 0.9;
+  opacity: 0.95;
   font-weight: normal;
-  filter: grayscale(90%);
+  font-size: medium;
+  filter: grayscale(50%);
 }
 .my-silver {
   color: rgb(201, 201, 201);
