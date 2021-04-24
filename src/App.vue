@@ -227,6 +227,7 @@ export default {
     },
   },
   created() {
+    document.title = "Aaron Noseworthy"
     this.fetchRoute();
     this.loading = false;
   },
@@ -268,6 +269,9 @@ export default {
 html {
   overflow-y: auto;
   /* font-family: "Roboto"; */
+}
+body {
+  background-color: #120a23;
 }
 
 .mainContainer {

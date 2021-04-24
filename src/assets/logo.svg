@@ -1,1 +1,22 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.5 100"><defs><style>.cls-1{fill:#1697f6;}.cls-2{fill:#7bc6ff;}.cls-3{fill:#1867c0;}.cls-4{fill:#aeddff;}</style></defs><title>Artboard 46</title><polyline class="cls-1" points="43.75 0 23.31 0 43.75 48.32"/><polygon class="cls-2" points="43.75 62.5 43.75 100 0 14.58 22.92 14.58 43.75 62.5"/><polyline class="cls-3" points="43.75 0 64.19 0 43.75 48.32"/><polygon class="cls-4" points="64.58 14.58 87.5 14.58 43.75 100 43.75 62.5 64.58 14.58"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="284.539" y1="143.24" x2="284.539" y2="189.139" id="gradient-0" gradientTransform="matrix(0.999882, 0.015393, -0.063659, 4.135241, 15.93182, -417.549446)">
+      <stop offset="0" style="stop-color: rgba(38, 26, 100, 1)"/>
+      <stop offset="1" style="stop-color: rgb(7, 5, 19);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="420.733" y1="133.835" x2="420.733" y2="334.855" id="gradient-1" gradientTransform="matrix(0.999624, -0.02742, 0.025437, 0.927323, -8.35953, 70.205642)">
+      <stop offset="0" style="stop-color: rgba(38, 26, 100, 1)"/>
+      <stop offset="1" style="stop-color: rgb(22, 15, 61);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="798.641" y1="394.901" x2="798.641" y2="804.533" id="gradient-2" gradientTransform="matrix(-0.664112, -0.747633, 0.353098, -0.313652, 728.150794, 1106.702842)">
+      <stop offset="0" style="stop-color: rgba(38, 26, 100, 1)"/>
+      <stop offset="1" style="stop-color: rgb(22, 15, 61);"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <rect x="108.346" y="157.978" width="285.593" height="45.899" style="fill: url(#gradient-0); vector-effect: non-scaling-stroke;"/>
+    <rect x="387.392" y="255.825" width="65.223" height="201.02" style="fill: url(#gradient-1); vector-effect: non-scaling-stroke;"/>
+    <path d="M 377.143 315 m -204.716 0 a 204.716 204.716 0 1 0 409.432 0 a 204.716 204.716 0 1 0 -409.432 0 Z M 377.143 315 m -136.607 0 a 136.607 136.607 0 0 1 273.214 0 a 136.607 136.607 0 0 1 -273.214 0 Z" style="fill: url(#gradient-2); vector-effect: non-scaling-stroke;" transform="matrix(-0.647709, 0.761888, -0.761888, -0.647709, 732.015857, 167.720151)" bx:shape="ring 377.143 315 136.607 136.607 204.716 204.716 1@49519910"/>
+  </g>
+</svg>

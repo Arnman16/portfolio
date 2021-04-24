@@ -4,19 +4,16 @@
       <!-- <v-divider></v-divider> -->
       <v-list nav dense>
         <v-list-item-group v-model="selectedItem" color="primary">
-          <v-list-item
-            @click="drawer = false"
-            v-for="(item, i) in items"
-            :key="i"
-            :to="item.link"
-          >
-            <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <div v-for="(item, i) in items" :key="i">
+            <v-list-item :to="item.link" v-if="getAccess(item.needsAuth)">
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.text"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </div>
         </v-list-item-group>
         <br />
         <v-divider></v-divider>
@@ -49,6 +46,7 @@
             >
           </v-list-item-action>
         </v-list-item>
+
         <br /><br /><br />
         <v-list-item>
           <v-card flat class="mx-auto" color="rgb(255,255,255,0.05)">
@@ -100,18 +98,33 @@ export default {
       editTokenDialog: false,
       selectedItem: 0,
       items: [
-        { text: "Home", icon: "mdi-home", link: "/" },
-        { text: "About", icon: "mdi-head-question", link: "/about" },
-        { text: "My Projects", icon: "mdi-view-grid", link: "/projects" },
-        // { text: "Log In", icon: "mdi-star", link: "/login" },
-        { text: "Posts", icon: "mdi-view-list", link: "/posts" },
+        { text: "Home", icon: "mdi-home", needsAuth: false, link: "/" },
+        {
+          text: "About",
+          icon: "mdi-head-question",
+          needsAuth: false,
+          link: "/about",
+        },
+        {
+          text: "My Projects",
+          icon: "mdi-view-grid",
+          needsAuth: false,
+          link: "/projects",
+        },
+        {
+          text: "Posts",
+          icon: "mdi-view-list",
+          needsAuth: false,
+          link: "/posts",
+        },
         {
           text: "Unpublished",
           icon: "mdi-view-list-outline",
           link: "/unpublished",
+          needsAuth: true,
         },
-        // { text: "Uploads", icon: "mdi-upload", link: "#" },
-        // { text: "Backups", icon: "mdi-cloud-upload", link: "#" },
+        // { text: "Uploads", icon: "mdi-upload", needsAuth=false, link: "#" },
+        // { text: "Backups", icon: "mdi-cloud-upload", needsAuth=false, link: "#" },
       ],
     };
   },
@@ -123,6 +136,9 @@ export default {
       set(newSelection) {
         return this.$store.dispatch("setSelected", newSelection);
       },
+    },
+    user() {
+      return this.$store.getters.user;
     },
     drawer: {
       get() {
@@ -158,6 +174,11 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    getAccess(needsAuth) {
+      if (!needsAuth) return true;
+      console.log(this.user.isAuthenticated);
+      return this.user.isAuthenticated;
     },
     darkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
