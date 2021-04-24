@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid fill-height style="{ 'align-items': center }">
     <v-row justify="space-around" align="center">
       <v-col align="center">
         <div class="title-text-home secondary--text" >Hi, I'm Aaron.</div>

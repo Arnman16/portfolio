@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container fluid fill-height class="posts">
     <v-fab-transition>
       <v-btn
         v-if="user.isAuthenticated"
@@ -25,13 +25,38 @@
           ></v-row
         >
       </div>
+      <v-row align="center" justify="center" class="ba-3 ma-2">
+        <v-col align="center" class="d-flex" cols="12" sm="6">
+          <h1>Posts - {{ selectedCategory }}</h1>
+        </v-col>
+        <v-col align="center" class="d-flex" cols="12" sm="6">
+          <v-select
+            outlined
+            hide-details="auto"
+            dense
+            label="Category"
+            width="30px"
+            v-model="selectedCategory"
+            :items="categories"
+          ></v-select
+        ></v-col>
+      </v-row>
       <transition-group name="list" tag="div" class="py-0">
         <div v-for="(post, i) in posts" :key="post.slug" :v-show="post">
-          <v-hover v-slot="{ hover }">
+          <v-hover
+            v-if="
+              post.category == selectedCategory || selectedCategory == 'All'
+            "
+            v-slot="{ hover }"
+          >
             <v-slide-y-transition>
               <v-card
                 @click.native="setPost(i)"
-                :color="$vuetify.theme.dark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.5)'"
+                :color="
+                  $vuetify.theme.dark
+                    ? 'rgba(255,255,255,0.08)'
+                    : 'rgba(255,255,255,0.5)'
+                "
                 :elevation="hover ? 12 : 2"
                 :class="{
                   'on-hover': hover,
@@ -81,6 +106,8 @@
         </div>
       </transition-group>
     </v-container>
+    <v-spacer></v-spacer>
+
     <v-dialog v-model="deleteConfirmation" max-width="500" class="mx-0">
       <v-container fluid fill-height>
         <v-row justify="space-around" align="center">
@@ -114,7 +141,7 @@
         </v-row>
       </v-container>
     </v-dialog>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -155,10 +182,10 @@ export default {
       if (!val) {
         return "-";
       }
-
       let date = val.toDate();
       return moment(date).fromNow();
     },
+
     trimLength(val) {
       if (val.length < 200) {
         return val;
@@ -175,9 +202,14 @@ export default {
         this.$store.dispatch("fetchUnpublishedPosts");
       }
     },
+    posts() {
+      this.getCategories();
+    },
   },
   data() {
     return {
+      categories: [],
+      selectedCategory: "All",
       postRef: {},
       signedIn: {},
       defaultThumb: defaultThumb,
@@ -211,8 +243,17 @@ export default {
         this.deleteConfirmation = false;
       }
     },
+    getCategories() {
+      let categories = new Set().add("All");
+      this.posts.forEach((post) => {
+        categories.add(post.category);
+      });
+      this.categories = Array.from(categories);
+    },
   },
-  created() {},
+  created() {
+    this.getCategories();
+  },
   mounted() {
     this.loading = true;
     if (this.$route.name == "Posts") {
@@ -257,5 +298,8 @@ export default {
 
 .my-date {
   opacity: 0.3;
+}
+.posts {
+  align-content: flex-start;
 }
 </style>
