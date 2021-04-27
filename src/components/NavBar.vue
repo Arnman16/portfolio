@@ -302,6 +302,7 @@ export default {
   font-weight: normal;
   font-size: medium;
   filter: grayscale(50%);
+  font-family: "Source Code Pro", monospace;
 }
 .my-silver {
   color: rgb(201, 201, 201);

@@ -86,7 +86,7 @@ const routes = [
         path: "/submit",
         name: "Submit",
         component: Submit,
-        // beforeEnter: ifAuthenticated,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: "/unpublished",
@@ -110,7 +110,7 @@ const routes = [
         path: "/signup",
         name: "Signup",
         component: Signup,
-        beforeEnter: ifNotAuthenticated,
+        beforeEnter: ifAuthenticated,
     },
     {
         path: "/projects",
