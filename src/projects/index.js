@@ -12,7 +12,7 @@ const projects = [
             { tech: "Javascript", icon: "mdi-language-javascript" },
             { tech: "Firebase", icon: "mdi-firebase" },
         ],
-        demo: "#",
+        demo: "https://arnman16.github.io/roll-play-stage/dist/",
         flex: 6,
     },
     {
@@ -37,9 +37,9 @@ const projects = [
         image: require("./images/LogHelper.png"),
         summary: "A tailor made log keeping tool made with Python and PyQT5.",
         details: "A tailor made log keeping tool made with Python and PyQT5.",
-        github: "https://github.com/arnman16/",
+        github: "https://github.com/Arnman16/LogHelper",
         stack: [{ tech: 'Python', icon: 'mdi-language-python' },],
-        demo: "#",
+        demo: "",
         flex: 6,
     },
     {
@@ -64,7 +64,7 @@ const projects = [
         details: "A tool created with Java and JavaFX to visualize and manipulate CDT sensor data profiles.",
         github: "https://github.com/arnman16/",
         stack: [{ tech: 'Java', icon: 'mdi-language-java' },],
-        demo: "#",
+        demo: "",
         flex: 6,
     },
     {
@@ -75,7 +75,7 @@ const projects = [
         details: "A collection of online tools designed for working with sub sea sensor data made with Python, Django, and Vue.js",
         github: "https://github.com/Arnman16/TrackBox",
         stack: [{ tech: 'Python', icon: 'mdi-language-python' }, { tech: 'Django', icon: 'mdi-alpha-d-circle-outline' }, { tech: 'Vue.js', icon: 'mdi-vuejs' }],
-        demo: "#",
+        demo: "",
         flex: 6,
     },
 ]

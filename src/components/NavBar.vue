@@ -159,6 +159,7 @@ const musicPoint = require("../assets/musicPoint.png");
 const musicPointHover = require("../assets/musicPointHover.png");
 const wavePoint = require("../assets/wavePoint.png");
 const wavePointHover = require("../assets/wavePointHover.png");
+const starPoint = require("../assets/starPoint.png");
 import "vue-keyframes";
 export default {
   name: "Navbar",
@@ -196,6 +197,7 @@ export default {
       musicPointHover: musicPointHover,
       wavePoint: wavePoint,
       wavePointHover: wavePointHover,
+      starPoint: starPoint,
       menuItems: [
         {
           title: "Home",
@@ -226,7 +228,7 @@ export default {
           path: "/projects",
           icon: "home",
           color: "yellow",
-          seperator: musicPointHover,
+          seperator: starPoint,
           needsAuth: false,
         },
         {
@@ -291,7 +293,6 @@ export default {
 }
 .btn-trans {
   transition: opacity 0.25s ease-in-out;
-  font-size: medium;
   font-weight: bold;
   font-size: large;
   font-family: "Source Code Pro", monospace;
@@ -300,7 +301,7 @@ export default {
 .btn-trans:not(.on-hover) {
   opacity: 0.95;
   font-weight: normal;
-  font-size: medium;
+  font-size: large;
   filter: grayscale(50%);
   font-family: "Source Code Pro", monospace;
 }

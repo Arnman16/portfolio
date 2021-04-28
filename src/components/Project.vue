@@ -68,7 +68,7 @@
                 top
               >
                 <template v-slot:activator="{ on, attrs }">
-                  <v-fab-transition>
+                  <v-fab-transition v-if="project.demo">
                     <v-btn
                       target="_blank"
                       fab
