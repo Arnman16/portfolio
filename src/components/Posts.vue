@@ -51,6 +51,7 @@
           >
             <v-slide-y-transition>
               <v-card
+                :ripple="{ class: 'indigo--text' }"
                 @click.native="setPost(i)"
                 :color="
                   $vuetify.theme.dark
@@ -147,7 +148,7 @@
 <script>
 // import { postsCollection, firebase } from "../db";
 import moment from "moment";
-const defaultThumb = require("../projects/images/AaronLogoYellowW.png");
+const defaultThumb = require("../assets/logo.svg");
 export default {
   name: "posts",
   computed: {

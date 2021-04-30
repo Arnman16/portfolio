@@ -285,7 +285,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 .my-title {
   font-family: "Source Code Pro", monospace;
@@ -294,14 +294,11 @@ export default {
 .btn-trans {
   transition: opacity 0.25s ease-in-out;
   font-weight: bold;
-  font-size: large;
   font-family: "Source Code Pro", monospace;
 }
 
 .btn-trans:not(.on-hover) {
   opacity: 0.95;
-  font-weight: normal;
-  font-size: large;
   filter: grayscale(50%);
   font-family: "Source Code Pro", monospace;
 }

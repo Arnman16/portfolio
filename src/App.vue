@@ -54,7 +54,7 @@
     <v-dialog v-model="loginWindow" max-width="500" class="mx-auto">
       <Login />
     </v-dialog>
-    <v-dialog v-model="loading" hide-overlay fullscreen>
+    <v-dialog v-model="loading" hide-overlay fullscreen hide-on-leave>
       <v-container fluid fill-height>
         <v-row justify="space-around" align="center">
           <v-col align="center">

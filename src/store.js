@@ -170,15 +170,15 @@ export default new Vuex.Store({
         createStory: ({ commit, state }) => {
             commit('SET_STORY', []);
             // remove potentially malicious html
-            console.log(state.editorContent, state.editorContent.length);
+            // console.log(state.editorContent, state.editorContent.length);
             const cleanedHtml = sanitizeHtml(state.editorContent, {
                 allowedClasses: {
                     '*': ['ql-size-large', 'ql-size-huge', 'ql-size-small', 'ql-align-center', 'ql-align-right']
                 },
                 allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
             });
-            console.log(cleanedHtml, cleanedHtml.length);
-
+            // console.log(cleanedHtml, cleanedHtml.length);
+            
             let contentHtml = cleanedHtml.split('{{{');
             let contentText = state.editorContentPlainText.split('{{{');
             let story = [];
@@ -298,7 +298,7 @@ export default new Vuex.Store({
             // The user's ID, unique to the Firebase project. Do NOT use
             // this value to authenticate with your backend server, if
             // you have one. Use User.getToken() instead.
-            const content = state.editorContent;
+            const content = state.editorContent.replace('	', '\t');
             let thumbnail = '';
             // takes the first image in a post and makes it the thumbnail
             let thumb = content.split('img src="');
@@ -341,7 +341,7 @@ export default new Vuex.Store({
                 router.push('/login');
                 return
             }
-            const content = state.editorContent;
+            const content = state.editorContent
             let thumbnail = '';
             // takes the first image in a post and makes it the thumbnail
             let thumb = content.split('img src="');

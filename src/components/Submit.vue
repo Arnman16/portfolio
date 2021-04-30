@@ -1,5 +1,11 @@
 <template>
-  <v-tabs dark slider-color="green" background-color="#000000dc" v-model="tab" grow>
+  <v-tabs
+    dark
+    slider-color="green"
+    background-color="#000000dc"
+    v-model="tab"
+    grow
+  >
     <v-tab> Compose </v-tab>
     <v-tab @click="createStory"> Preview </v-tab>
     <v-tabs-items class="transparent" v-model="tab">
@@ -285,6 +291,13 @@ export default {
   margin-left: auto;
   margin-right: auto;
   padding: 16px 16px 6px 16px;
+}
+
+.content-text p {
+  white-space: pre-wrap !important;
+}
+.content-text div {
+  white-space: pre-wrap !important;
 }
 /* width */
 ::-webkit-scrollbar {

@@ -12,20 +12,14 @@
   >
     <div id="toolbar" slot="toolbar">
       <!-- Add a bold button -->
-      <v-spacer></v-spacer>
       <v-row
-        justify="space-around"
+        justify="center"
         align="center"
-        class="ml-4 pl-4 pr-4 mr-4 mt-0 mb-0"
+        class="ml-1 mr-1 mt-0 mb-0"
+        no-gutters
       >
-        <v-col class="pa-1" cols="1">
-          <button class="ql-bold">Bold</button>
-        </v-col>
-        <v-col class="pa-1" cols="1">
-          <button class="ql-italic">Italic</button>
-        </v-col>
         <!-- Add font size dropdown -->
-        <v-col class="pa-1" cols="2">
+        <v-col class="pa-1" cols="auto">
           <select class="ql-size">
             <option value="small"></option>
             <!-- Note a missing, thus falsy value, is used to reset to default -->
@@ -34,24 +28,32 @@
             <option value="huge"></option>
           </select>
         </v-col>
-        <v-col class="pa-2" cols="1">
+        <v-col class="pa-1" cols="auto">
+          <button class="ql-bold">Bold</button>
+        </v-col>
+        <v-col class="pa-1" cols="auto">
+          <button class="ql-italic">Italic</button>
+                    <button class="ql-code">Code</button>
+
+        </v-col>
+        <v-col class="pa-2" cols="auto">
           <select class="ql-align">
             <option selected="selected"></option>
-            <option value="left"></option>
+            <!-- <option value="left"></option> -->
             <option value="center"></option>
             <option value="right"></option>
             <option value="justify"></option>
           </select>
         </v-col>
         <!-- Custom -->
-        <v-spacer></v-spacer>
-        <v-col align="center" class="pa-1 mx-auto" cols="1">
-          <v-btn light large @click.prevent="submit(published)" icon
+        <!-- <v-spacer></v-spacer> -->
+        <v-col align="center" class="pa-1 mx-1 my-auto" cols="auto">
+          <v-btn light @click.prevent="submit(published)" icon
             ><v-icon>mdi-content-save</v-icon>
           </v-btn>
         </v-col>
-        <v-col align="center" class="pa-1 mx-auto" cols="1">
-          <v-btn light large icon @click.prevent="$router.back()"
+        <v-col align="center" class="pa-1 mx-1 my-auto" cols="auto">
+          <v-btn light icon @click.prevent="$router.back()"
             ><v-icon>mdi-window-close</v-icon>
           </v-btn>
         </v-col>
@@ -61,7 +63,7 @@
 </template>
 
 <script>
-import { quillEditor } from "vue-quill-editor";
+import { quillEditor, Quill } from "vue-quill-editor";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
@@ -119,6 +121,7 @@ export default {
                 "strong",
                 "u",
                 "s",
+                "pre",
                 "i",
                 "p",
                 "br",
@@ -127,7 +130,7 @@ export default {
                 "li",
                 "span",
               ],
-              attributes: ["href", "src","rel", "target", "class"],
+              attributes: ["href", "src", "rel", "target", "class"],
             },
           },
         },
@@ -153,23 +156,19 @@ export default {
       this.content = html;
       this.editorContentPlainText = text;
     },
-    customButtonClick() {
-      console.log("HIHI");
-    },
   },
   created() {
-    this.editorContent = '';
+    this.editorContent = "";
   },
   mounted() {
-
     // quill by default saves lines as <p></p> creating way too much line spacing.
     // rather than using css to modify the p lineheight I have added the following method
     // to register the Blocks as pre and have an accompanying .pre css class to get the
     // aesthetics I'm trying to accomplish.
-    // var Block = Quill.import("blots/block");
-    // Block.tagName = "DIV";
-    // Block.className = "pre";
-    // Quill.register(Block, true);
+    var Block = Quill.import("blots/block");
+    Block.tagName = "DIV";
+    Block.className = "pre";
+    Quill.register(Block, true);
   },
 };
 </script>
@@ -178,14 +177,14 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 
 .pre {
-  white-space: pre-wrap !important;
+  white-space: pre !important;
   max-width: 682px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .ql-editor p {
-  white-space: pre-wrap !important;
+  white-space: pre !important;
   max-width: 682px;
   margin-left: auto;
   margin-right: auto;

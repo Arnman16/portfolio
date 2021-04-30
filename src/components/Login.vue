@@ -29,7 +29,7 @@
               v-model="user.password"
             ></v-text-field>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="mb-4">
             <v-spacer></v-spacer>
             <v-btn
               :disabled="loggingIn"
@@ -52,6 +52,7 @@
           :color="loginError.level"
           dense
           v-show="loginError.message"
+          class="ma-0"
         >
           <v-layout align-center justify-center>
             {{ loginError.message }}

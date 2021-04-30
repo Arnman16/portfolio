@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="post-container">
+  <v-container fluid fill-height class="post-container">
     <v-slide-x-transition>
       <v-container v-if="post">
         <v-sheet :class="isMobile ? 'pa-1, transparent' : 'pa-3, transparent'">
@@ -182,6 +182,7 @@ export default {
 }
 
 .post-container {
+  align-content: flex-start;
   max-width: 800px;
   padding: 0;
 }
