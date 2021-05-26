@@ -1,9 +1,21 @@
 <template>
   <v-app
     class="my-app"
-    :style="$vuetify.theme.dark ? { background: $vuetify.theme.themes.dark.background } : { background: $vuetify.theme.themes.light.background }"
+    :style="
+      $vuetify.theme.dark
+        ? { background: $vuetify.theme.themes.dark.background }
+        : { background: $vuetify.theme.themes.light.background }
+    "
   >
-    <v-app-bar app flat dense hide-on-scroll dark clipped-right :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'">
+    <v-app-bar
+      app
+      flat
+      dense
+      hide-on-scroll
+      dark
+      clipped-right
+      :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'"
+    >
       <div v-if="noise" class="noise"><span class="bg"></span></div>
       <div v-else></div>
       <NavBar />
@@ -42,12 +54,21 @@
     </v-navigation-drawer>
     <v-main>
       <transition name="page" mode="out-in">
-        <v-container fluid fill-height :class="isMobile ? 'ma-0 pa-0' : 'mainContainer'">
+        <v-container
+          fluid
+          fill-height
+          :class="isMobile ? 'ma-0 pa-0' : 'mainContainer'"
+        >
           <router-view></router-view>
         </v-container>
       </transition>
     </v-main>
-    <v-footer height="58" outlined padless :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'">
+    <v-footer
+      height="58"
+      outlined
+      padless
+      :color="$vuetify.theme.dark ? '#120a23bd' : '#000000dc'"
+    >
       <div v-if="noise" class="noise"><span class="bg_nav"></span></div>
       <Footer />
     </v-footer>
@@ -227,7 +248,7 @@ export default {
     },
   },
   created() {
-    document.title = "Aaron Noseworthy"
+    document.title = "Aaron Noseworthy";
     this.fetchRoute();
     this.loading = false;
   },

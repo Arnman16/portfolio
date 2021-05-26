@@ -33,8 +33,7 @@
         </v-col>
         <v-col class="pa-1" cols="auto">
           <button class="ql-italic">Italic</button>
-                    <button class="ql-code">Code</button>
-
+          <button class="ql-code">Code</button>
         </v-col>
         <v-col class="pa-2" cols="auto">
           <select class="ql-align">
