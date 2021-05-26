@@ -177,7 +177,7 @@ export default {
     },
     getAccess(needsAuth) {
       if (!needsAuth) return true;
-      console.log(this.user.isAuthenticated);
+      // console.log(this.user.isAuthenticated);
       return this.user.isAuthenticated;
     },
     darkMode() {

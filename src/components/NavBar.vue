@@ -248,7 +248,7 @@ export default {
     },
     getAccess(needsAuth) {
       if (!needsAuth) return true;
-      console.log(this.user.isAuthenticated);
+      // console.log(this.user.isAuthenticated);
       return this.user.isAuthenticated;
     },
     setIntro() {
@@ -271,7 +271,7 @@ export default {
         routeFrames.push(routeFrame);
       });
       this.routeFrames = routeFrames;
-      console.log(routeFrames);
+      // console.log(routeFrames);
     },
     mounted() {
       this.routeName = this.$route.name;
