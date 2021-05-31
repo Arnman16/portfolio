@@ -12,6 +12,7 @@ import Submit from "@/components/Submit.vue";
 import Posts from "@/components/Posts.vue";
 import Post from "@/components/Post.vue";
 import Jobs from "@/components/Jobs.vue";
+import NotFound from "@/components/NotFound.vue";
 // import Unpublished from "@/components/Unpublished.vue";
 // import UnpublishedPost from "@/components/UnpublishedPost.vue";
 // import Edit from "@/components/Edit.vue";
@@ -126,6 +127,11 @@ const routes = [
     name: "Jobs",
     component: Jobs,
     beforeEnter: ifAuthenticated,
+  },
+  {
+    path: "/*",
+    name: "404",
+    component: NotFound,
   },
 ];
 
