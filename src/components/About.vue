@@ -53,7 +53,7 @@
               </div>
             </v-list-item-group>
           </v-list>
-          <v-img class="mx-auto mt-3 mb-3" width="25%" :src="profile"></v-img>
+          <v-img class="mx-auto mt-3 mb-3" width="40%" :src="profile"></v-img>
         </div>
       </v-container>
     </v-card>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-const profile = require("../assets/profile.png");
+const profile = require("../assets/profileSquare.png");
 export default {
   name: "about",
   components: {},
@@ -81,9 +81,9 @@ export default {
           link: "https://github.com/Arnman16",
         },
         {
-          text: "https://www.linkedin.com/in/aaron-noseworthy-a69b4215b",
+          text: "https://www.linkedin.com/in/aaron-noseworthy",
           icon: "mdi-linkedin",
-          link: "https://www.linkedin.com/in/aaron-noseworthy-a69b4215b",
+          link: "https://www.linkedin.com/in/aaron-noseworthy",
         },
       ],
     };
