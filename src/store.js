@@ -210,7 +210,7 @@ export default new Vuex.Store({
             // adding vuetify's responsive content css helper class to images.
 
             let newImageFormat = htmlBlock[0].replace(
-              "<img",
+              /<img/g,
               '<img class="v-responsive__content" '
             );
             story.push({
@@ -219,7 +219,7 @@ export default new Vuex.Store({
             });
           } else {
             let newImageFormat = htmlBlock[1].replace(
-              "<img",
+              /<img/g,
               '<img class="v-responsive__content" '
             );
 
