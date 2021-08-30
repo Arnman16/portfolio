@@ -3,7 +3,7 @@ const projects = [
     name: "Car Tiles",
     thumbnail: require("./images/carTilesThumb2.png"),
     image: require("./images/carTiles3.png"),
-    summary: "An experiment with HTML5 canvas and Firebase real-time database.",
+    summary: "A car game made with Vue.js and Canvas",
     details:
       "A fun race-against-the-clock car game made with HTML5 Canvas, Vue3 - Composition API, and styled with Tailwind CSS",
     github: "https://github.com/Arnman16/car-tiles",
